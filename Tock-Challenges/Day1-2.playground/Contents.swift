@@ -2,36 +2,47 @@
 
 import Cocoa
 
-let input: String = "How are you :-) doing :-( today :-)?"
+let input: String = ":)"
 var characters: [String] = []
-
-let delimiters = NSCharacterSet(charactersInString: ", \n")
-let words = input.componentsSeparatedByCharactersInSet(delimiters)
 
 var happyCount = 0
 var sadCount = 0
-var wordCount = 0
-let happyFace = ":-)"
 
-//for (var i = 0; i < words.count; i++)
-//{
-//    if (String(words[i]) == happyFace)
-//    {
-//        happyCount++
-//    } else if (String(words[i]) == "today")
-//    {
-//        sadCount++
-//    } else {
-//        wordCount++
-//    }
-//}
-
+// Creat an array of all characters
 for character in input.characters
 {
-characters += [String(character)]
-    
-    if character == ":"
+    characters += [String(character)]
+}
+
+// Find all the happy and sad faces
+for (var i = 0; i < input.characters.count; i++)
+{
+    if characters[i] == ":"
     {
-        print("i found it")
+        
+        if characters[i+1] == "-"
+        {
+            if characters[i+2] == "("
+            {
+                sadCount += 1
+            }
+            
+            if characters[i+2] == ")"
+            {
+                happyCount += 1
+            }
+            
+        }
     }
+}
+
+//Print the output message
+if (sadCount < happyCount)
+{
+    print("happy")
+} else if (sadCount > happyCount)
+{
+    print("sad")
+} else {
+    print("none")
 }
