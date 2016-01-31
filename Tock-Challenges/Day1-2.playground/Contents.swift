@@ -2,7 +2,7 @@
 
 import Cocoa
 
-let input: String = ":)"
+let input: String = "ldkjasdlfkjasdlkf(((P)))))jhasd :) :-("
 var characters: [String] = []
 
 var happyCount = 0
@@ -19,7 +19,6 @@ for (var i = 0; i < input.characters.count; i++)
 {
     if characters[i] == ":"
     {
-        
         if characters[i+1] == "-"
         {
             if characters[i+2] == "("
