@@ -2,19 +2,14 @@
 
 import Cocoa
 
-let input = "joy"
+let input = "hamc"
 var characterArray: [String] = []
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "y", "x", "z"]
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var output = ""
 var distances: [String:Int] = [:]
-var distanceFromVowel = []
+var vowelValue: [Int] = []
 var minDistance = 26
-var aArray = 0
-var eArray = 4
-var iArray = 8
-var oArray = 14
-var uArray = 20
-var alphabetArrayTotal = 25
+
 
 for character in input.characters
 {
@@ -28,23 +23,110 @@ for character in input.characters
     // the first letter always goes first
     output += String(character)
     
-    
-    if (String(character) != letters[aArray] && String(character) != letters[eArray] && String(character) != letters[iArray] && String(character) != letters[oArray] && String(character) != letters[uArray])
+    if (String(character) != letters[0] && String(character) != letters[4] && String(character) != letters[8] && String(character) != letters[14] && String(character) != letters[20])
     {
-        for (var i:Int = 0; i < alphabetArrayTotal; i++)
+        for i in 0...25
         {
             if (String(character) == letters[i])
             {
-                distances["u"] = abs(i - 20)
-                distances["o"] = abs(i - 14)
-                distances["i"] = abs(i - 8)
-                distances["e"] = abs(i - 4)
-                distances["a"] = abs(i - 0)
-                for (key, value) in distances
+                vowelValue = [0, 4, 8, 14, 20]
+                
+                for j in 0...4
                 {
-                    minDistance = min(minDistance, value)
+                    vowelValue[j] = i - vowelValue[j]
                 }
-                minDistance = 26
+                
+                if (abs(vowelValue[0]) < abs(vowelValue[1]) && abs(vowelValue[0]) < abs(vowelValue[2]) && abs(vowelValue[0]) < abs(vowelValue[3]) && abs(vowelValue[0]) < abs(vowelValue[4]))
+                {
+                    output += "a"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[1]) < abs(vowelValue[0]) && abs(vowelValue[1]) < abs(vowelValue[2]) && abs(vowelValue[1]) < abs(vowelValue[3]) && abs(vowelValue[1]) < abs(vowelValue[4]))
+                {
+                    output += "e"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[2]) < abs(vowelValue[0]) && abs(vowelValue[2]) < abs(vowelValue[1]) && abs(vowelValue[2]) < abs(vowelValue[3]) && abs(vowelValue[2]) < abs(vowelValue[4]))
+                {
+                    output += "i"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[3]) < abs(vowelValue[0]) && abs(vowelValue[3]) < abs(vowelValue[1]) && abs(vowelValue[3]) < abs(vowelValue[2]) && abs(vowelValue[3]) < abs(vowelValue[4]))
+                {
+                    output += "o"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[4]) < abs(vowelValue[0]) && abs(vowelValue[4]) < abs(vowelValue[1]) && abs(vowelValue[4]) < abs(vowelValue[2]) && abs(vowelValue[4]) < abs(vowelValue[3]))
+                {
+                    output += "u"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[0]) == abs(vowelValue[1]) || abs(vowelValue[0]) == abs(vowelValue[2]) || abs(vowelValue[0]) == abs(vowelValue[3]) || abs(vowelValue[0]) == abs(vowelValue[4]))
+                {
+                    output += "a"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[1]) == abs(vowelValue[0]) || abs(vowelValue[1]) == abs(vowelValue[2]) || abs(vowelValue[1]) == abs(vowelValue[3]) || abs(vowelValue[1]) == abs(vowelValue[4]))
+                {
+                    output += "e"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[2]) == abs(vowelValue[0]) || abs(vowelValue[2]) == abs(vowelValue[1]) || abs(vowelValue[2]) == abs(vowelValue[3]) || abs(vowelValue[2]) == abs(vowelValue[4]))
+                {
+                    output += "i"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[3]) == abs(vowelValue[0]) || abs(vowelValue[3]) == abs(vowelValue[1]) || abs(vowelValue[3]) == abs(vowelValue[2]) || abs(vowelValue[3]) == abs(vowelValue[4]))
+                {
+                    output += "o"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                } else if (abs(vowelValue[4]) == abs(vowelValue[0]) || abs(vowelValue[4]) == abs(vowelValue[1]) || abs(vowelValue[4]) == abs(vowelValue[2]) || abs(vowelValue[4]) == abs(vowelValue[3]))
+                {
+                    output += "u"
+                    if i+1 != 0 && i+1 != 4 && i+1 != 8 && i+1 != 14 && i+1 != 20
+                    {
+                        output += letters[i+1]
+                    } else {
+                        output += letters[i+2]
+                    }
+                }
             }
         }
     }

@@ -2,7 +2,7 @@
 
 import Cocoa
 
-let input: String = "ldkjasdlfkjasdlkf(((P)))))jhasd :) :-("
+let input: String = "This:-(is str:-(:-(ange te:-)xt.:^)?"
 var characters: [String] = []
 
 var happyCount = 0
