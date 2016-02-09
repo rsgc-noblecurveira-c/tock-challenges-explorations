@@ -10,9 +10,12 @@ var inputNumber = "3210423897234"
 for character in inputNumber.unicodeScalars
 {
     inputThing += [String(character)]
+    
+    Int(String(character))
 }
 
-inputThing
+
+
 
 for (var i = 0; i < 13; i++)
 {
