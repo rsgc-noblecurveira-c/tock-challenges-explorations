@@ -10,7 +10,6 @@ var distances: [String:Int] = [:]
 var vowelValue: [Int] = []
 var minDistance = 26
 
-
 for character in input.characters
 {
     // adds all of the input characters to an array
@@ -131,4 +130,3 @@ for character in input.characters
         }
     }
 }
-output
